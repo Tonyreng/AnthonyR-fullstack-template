@@ -5,10 +5,13 @@ import os
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_cors import CORS
+from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
 from database import db
 from models import *
 from admin import setup_admin
+from routes.auth import auth_bp
+from routes.users import users_bp
 
 # Load environment variables
 load_dotenv()
@@ -30,6 +33,11 @@ else:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///database.db"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# JWT Configuration
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY', 'super-secret-key')
+jwt = JWTManager(app)
+
 MIGRATE = Migrate(app, db, compare_type=True)
 db.init_app(app)
 
@@ -38,6 +46,10 @@ CORS(app)
 
 # Setup admin
 setup_admin(app)
+
+# Register Blueprints
+app.register_blueprint(auth_bp, url_prefix='/api/auth')
+app.register_blueprint(users_bp, url_prefix='/api/users')
 
 # Basic route for testing
 @app.route('/api/health')
