@@ -4,7 +4,7 @@ Un template completo para aplicaciones fullstack con React (TypeScript) + Flask 
 
 ## 🏗️ Estructura del Proyecto
 
-```
+````
 my-fullstack-template/
 ├── frontend## 🔥 Funcionalidades de Autenticación
 
@@ -32,11 +32,11 @@ localStorage.setItem('token', response.access_token);
 
 // Las peticiones posteriores incluirán automáticamente el token
 const users = await userService.getUsers(); // Token incluido automáticamente
-```
+````
 
 #### Usar el componente Login
 
-```tsx
+````tsx
 import Login from './components/Login';
 
 function App() {
@@ -74,7 +74,7 @@ function App() {
 │   ├── .env                 # Variables de entorno
 │   └── Dockerfile
 └── docker-compose.yml       # Orquestación de servicios
-```
+````
 
 ## 🚀 Inicio Rápido
 
@@ -254,15 +254,17 @@ with app.app_context():
 ## � Funcionalidades de Autenticación
 
 ### Frontend
-- **Servicio API centralizado** (`services/api.ts`) con interceptores automáticos
-- **Componente Login** (`components/Login.tsx`) con manejo de estados
-- **Interceptores JWT** que añaden automáticamente el token a todas las peticiones
-- **Manejo automático de tokens expirados** con redirección al login
+
+-   **Servicio API centralizado** (`services/api.ts`) con interceptores automáticos
+-   **Componente Login** (`components/Login.tsx`) con manejo de estados
+-   **Interceptores JWT** que añaden automáticamente el token a todas las peticiones
+-   **Manejo automático de tokens expirados** con redirección al login
 
 ### Backend
-- **Rutas de autenticación** configuradas en `routes/auth.py`
-- **Middleware JWT** para proteger rutas
-- **Modelos de usuario** con hash de contraseñas
+
+-   **Rutas de autenticación** configuradas en `routes/auth.py`
+-   **Middleware JWT** para proteger rutas
+-   **Modelos de usuario** con hash de contraseñas
 
 ## 📝 Próximos Pasos
 
